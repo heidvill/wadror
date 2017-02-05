@@ -15,17 +15,17 @@
 
 <% if @beer_club.members.empty? %>
     <p>
-    This beer club has not any members.
+      This beer club has not any members.
     </p>
 <% end %>
 
 <% if not @beer_club.members.empty? %>
- <h3>Members:</h3>
-  <ul>
-    <% @beer_club.members.each do |member| %>
-     <li> <%= link_to member.username, member %></li>
-    <% end %>
-  </ul>
+    <h3>Members:</h3>
+    <ul>
+      <% @beer_club.members.each do |member| %>
+          <li> <%= link_to member.username, member %></li>
+      <% end %>
+    </ul>
 <% end %>
 
 <%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |

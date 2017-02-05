@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
     @rating.user = current_user
 
     if @rating.save
-     # current_user.ratings << @rating
+      # current_user.ratings << @rating
       redirect_to user_path(current_user)
     else
       @beers = Beer.all

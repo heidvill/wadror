@@ -10,9 +10,9 @@ class User < ApplicationRecord
   # validates :username, uniqueness: true
   # validates :username, length: { minimum: 3 }
   validates :username, uniqueness: true,
-            length: { minimum: 3,
-                      maximum: 30}
-  validates :password, length: { minimum: 4 }
+            length: {minimum: 3,
+                     maximum: 30}
+  validates :password, length: {minimum: 4}
 
   validate :check_password
 
@@ -23,5 +23,8 @@ class User < ApplicationRecord
 
   def to_s
     username
+  end
+
+  def favorite_beer
   end
 end

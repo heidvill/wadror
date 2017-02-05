@@ -17,7 +17,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new
     #@beer_clubs = Membership.find user_id: current_user.id
     #@beer_clubs = BeerClub.where.not(member_id: current_user.id)
-    @beer_clubs = BeerClub.all.reject{|club| current_user.in? club.members}
+    @beer_clubs = BeerClub.all.reject { |club| current_user.in? club.members }
   end
 
   # GET /memberships/1/edit
@@ -67,13 +67,13 @@ class MembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def membership_params
+    params.require(:membership).permit(:beer_club_id, :user_id)
+  end
 end
