@@ -17,8 +17,8 @@ class User < ApplicationRecord
   validate :check_password
 
   def check_password
-    errors.add(:password, "must have atleast one capital letter") if password == password.downcase
-    errors.add(:password, "must have atleast one number") if password.count("0-9") == 0
+    errors.add(:password, "must have atleast one capital letter") if password and password == password.downcase
+    errors.add(:password, "must have atleast one number") if password and password.count("0-9") == 0
   end
 
   def to_s
