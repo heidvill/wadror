@@ -9,7 +9,7 @@ class BeerClub < ApplicationRecord
   validate :check_year
 
   def check_year
-    errors.add(:founded, "too big value") if founded > Time.now.year
+    errors.add(:founded, "too big value") if founded.nil? or founded > Time.now.year
   end
 
   def to_s

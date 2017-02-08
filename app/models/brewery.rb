@@ -11,7 +11,7 @@ class Brewery < ApplicationRecord
   validate :check_year
 
   def check_year
-    errors.add(:year, "too big value") if year > Time.now.year
+    errors.add(:year, "too big value") if year.nil? or year > Time.now.year
   end
 
 end
