@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include Helpers
+
 RSpec.describe Beer, type: :model do
   it "with a proper name and style is saved" do
     beer = Beer.create name: "Koff", style: "Lager"

@@ -31,13 +31,25 @@ class User < ApplicationRecord
     # ratings.sort_by(&:score).last.beer
     ratings.order(score: :desc).limit(1).first.beer
   end
-=begin
-  def favorite_style
 
+  def favorite_style
+    return nil if ratings.empty?
+    g = ratings.group_by { |r| r.beer.style }
+    pisteet = Hash.new
+    g.keys.each do |style|
+      pisteet[style] = g[style].map(&:score).sum
+    end
+    pisteet.sort_by { |_key, value| value }.reverse!.first[0]
   end
 
   def favorite_brewery
-
+    return nil if ratings.empty?
+    g = ratings.group_by { |r| r.beer.brewery }
+    pisteet = Hash.new
+    g.keys.each do |b|
+      pisteet[b] = g[b].map(&:score).sum
+    end
+    pisteet.sort_by { |_key, value| value }.reverse!.first[0].name
   end
-=end
+
 end

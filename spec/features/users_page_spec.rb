@@ -69,4 +69,13 @@ describe "User page" do
     expect(page).to have_content 'anonymous: 5'
     expect(page).not_to have_content 'anonymous: 10'
   end
+
+  it "do not show favourite style if no ratings created" do
+    visit user_path(user)
+    expect(page).not_to have_content 'Your favourite style'
+  end
+
+  it "shows favourite style correctly"do
+
+  end
 end

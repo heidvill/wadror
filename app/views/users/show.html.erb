@@ -23,6 +23,11 @@
   <% end %>
 </ul>
 
+<% if not @user.ratings.empty? %>
+    Your favourite beer is <%=@user.favorite_beer%>. <br>
+    Your favourite style is <%=@user.favorite_style%>. <br>
+    Your favourite brewery is <%=@user.favorite_brewery%>.
+<% end %>
 <h3>Memberships of beer clubs</h3>
 <% if @user.beer_clubs.empty? %>
     You are not a member of any beer club

@@ -30,4 +30,10 @@ FactoryGirl.define do
     style "Lager"
   end
 
+  factory :beer2, class: Beer do
+    name "anonymous"
+    brewery "Koff"
+    style "Ipa"
+  end
+
 end

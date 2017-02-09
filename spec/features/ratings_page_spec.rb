@@ -40,7 +40,7 @@ describe "Rating page" do
   it "lists the ratings and their total number" do
     create_ratings(user, 5, 10)
     create_ratings(user2, 15)
-    
+
     visit ratings_path
 
     expect(page).to have_content "Number of ratings: 3"
