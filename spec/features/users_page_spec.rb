@@ -58,10 +58,7 @@ describe "User page" do
   end
 
   it "deletes user's rating from db" do
-    create_ratings(user, 5, 10)
-    sign_in(username: "Pekka", password: "Foobar1")
-
-    visit user_path(user)
+    create_two_ratings_and_sign_in
 
     page.find('li', :text => '10').click_link('delete')
 
@@ -70,12 +67,32 @@ describe "User page" do
     expect(page).not_to have_content 'anonymous: 10'
   end
 
-  it "do not show favourite style if no ratings created" do
+  it "does not show favourite style if no ratings created" do
     visit user_path(user)
     expect(page).not_to have_content 'Your favourite style'
   end
 
   it "shows favourite style correctly"do
+    create_two_ratings_and_sign_in
 
+    expect(page).to have_content 'Your favourite style is Lager'
+  end
+
+  it "does not show favourite brewery if no ratings created" do
+    visit user_path(user)
+    expect(page).not_to have_content 'Your favourite brewery'
+  end
+
+  it "shows favourite brewery correctly"do
+    create_two_ratings_and_sign_in
+
+    expect(page).to have_content 'Your favourite brewery is anonymous'
+  end
+
+  def create_two_ratings_and_sign_in
+    create_ratings(user, 5, 10)
+    sign_in(username: "Pekka", password: "Foobar1")
+
+    visit user_path(user)
   end
 end

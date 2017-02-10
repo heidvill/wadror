@@ -24,7 +24,7 @@ FactoryGirl.define do
     year 1900
   end
 
-  factory :brewery2, class:Brewery do
+  factory :brewery2, class: Brewery do
     name "Koff"
     year 1900
   end
@@ -37,7 +37,7 @@ FactoryGirl.define do
 
   factory :beer2, class: Beer do
     name "anonymous"
-    brewery :brewery2
+    brewery
     style "Ipa"
   end
 

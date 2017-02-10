@@ -77,6 +77,8 @@ RSpec.describe User, type: :model do
 
   describe "favorite style" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:brewery) { FactoryGirl.create(:brewery, name: "Koff", year: 1500) }
+    let(:beer) { FactoryGirl.create(:beer2, brewery: brewery) }
 
     it "has method for determining one" do
       expect(user).to respond_to(:favorite_style)
@@ -92,11 +94,10 @@ RSpec.describe User, type: :model do
       expect(user.favorite_style).to eq("Lager")
     end
 
-    it "is the one with highest rating if several rated" do
-      create_ratings(user, 10, 15) # lager
-      beer = FactoryGirl.create(:beer2)
-      FactoryGirl.create(:rating, score: 15, beer: beer, user: user)
-      FactoryGirl.create(:rating, score: 20, beer: beer, user: user)
+    it "is the one with highest rating average if several rated" do
+      create_ratings(user, 10, 5) # lager ka = (10 + 5) / 2 = 7.5
+
+      FactoryGirl.create(:rating, score: 10, beer: beer, user: user) # Ipa ka = 10
 
       expect(user.favorite_style).to eq("Ipa")
 
@@ -105,6 +106,8 @@ RSpec.describe User, type: :model do
 
   describe "favorite brewery" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:brewery) { FactoryGirl.create(:brewery, name: "Koff", year: 1500) }
+    let(:beer) { FactoryGirl.create(:beer2, brewery: brewery) }
 
     it "has method for determining one" do
       expect(user).to respond_to(:favorite_brewery)
@@ -120,8 +123,12 @@ RSpec.describe User, type: :model do
       expect(user.favorite_brewery).to eq("anonymous")
     end
 
-    it "is the one with highest rating if several rated" do
+    it "is the one with highest rating average if several rated" do
+      create_ratings(user, 10, 5) # anonymous ka = (10 + 5) / 2 = 7.5
 
+      FactoryGirl.create(:rating, score: 10, beer: beer, user: user) # Koff ka = 10
+
+      expect(user.favorite_brewery).to eq("Koff")
     end
   end
 end

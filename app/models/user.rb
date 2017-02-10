@@ -37,7 +37,8 @@ class User < ApplicationRecord
     g = ratings.group_by { |r| r.beer.style }
     pisteet = Hash.new
     g.keys.each do |style|
-      pisteet[style] = g[style].map(&:score).sum
+       pisteet[style] = g[style].map(&:score).sum.to_f/g[style].count
+
     end
     pisteet.sort_by { |_key, value| value }.reverse!.first[0]
   end
@@ -47,7 +48,7 @@ class User < ApplicationRecord
     g = ratings.group_by { |r| r.beer.brewery }
     pisteet = Hash.new
     g.keys.each do |b|
-      pisteet[b] = g[b].map(&:score).sum
+      pisteet[b] = g[b].map(&:score).sum.to_f/g[b].count
     end
     pisteet.sort_by { |_key, value| value }.reverse!.first[0].name
   end
