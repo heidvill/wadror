@@ -7,13 +7,14 @@ describe "Beer" do
 
   before :each do
     FactoryGirl.create :brewery
+    FactoryGirl.create :style
     sign_in(username: "Pekka", password: "Foobar1")
   end
 
   it "when filled with acceptable name, is added to the system" do
     visit new_beer_path
     fill_in('beer_name', with: 'Karhu')
-    select('Lager', from: 'beer[style]')
+    select('Lager', from: 'beer[style_id]')
     select('anonymous', from: 'beer[brewery_id]')
 
     expect {
@@ -24,7 +25,7 @@ describe "Beer" do
   it "when filled with wrong name, is not saved" do
     visit new_beer_path
     fill_in('beer_name', with: '')
-    select('Lager', from: 'beer[style]')
+    select('Lager', from: 'beer[style_id]')
     select('anonymous', from: 'beer[brewery_id]')
 
     click_button "Create Beer"

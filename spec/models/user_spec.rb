@@ -78,7 +78,8 @@ RSpec.describe User, type: :model do
   describe "favorite style" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:brewery) { FactoryGirl.create(:brewery, name: "Koff", year: 1500) }
-    let(:beer) { FactoryGirl.create(:beer2, brewery: brewery) }
+    let!(:style) {FactoryGirl.create(:style2)}
+    let(:beer) { FactoryGirl.create(:beer2, style: style, brewery: brewery) }
 
     it "has method for determining one" do
       expect(user).to respond_to(:favorite_style)

@@ -1,17 +1,8 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use PostgreSQL as the database for Active Record
-group :development, :test do
-  gem 'sqlite3'
-end
 
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
 ruby '2.2.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -35,33 +26,16 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rspec-its'
+gem 'httparty'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'pry-rails' # lisää siis tämä rivi!
-end
-
-# Tämän voi halutessaan poistaa. Aja bundle install
-group :development, :test do
-  gem "better_errors"
-  gem "binding_of_caller"
-  #...
-end
-
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
-end
-
-group :development, :test do
-  gem 'rspec-rails', '~> 3.5'
 end
 
 group :test do
@@ -69,6 +43,23 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock' # BeermappingApia varten
+end
+
+# Use PostgreSQL as the database for Active Record
+group :development, :test do
+  gem 'sqlite3'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
+  gem 'pry-rails'
+  gem "better_errors"     # | Nämän voi halutessaan poistaa. Aja bundle install
+  gem "binding_of_caller" # |
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

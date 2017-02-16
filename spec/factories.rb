@@ -29,16 +29,26 @@ FactoryGirl.define do
     year 1900
   end
 
+  factory :style do
+    name "Lager"
+    description "asd"
+  end
+
+  factory :style2, class: Style do
+    name "Ipa"
+    description "asd"
+  end
+
   factory :beer do
     name "anonymous"
     brewery
-    style "Lager"
+    style
   end
 
   factory :beer2, class: Beer do
     name "anonymous"
     brewery
-    style "Ipa"
+    style
   end
 
 end

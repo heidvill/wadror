@@ -40,7 +40,7 @@ class User < ApplicationRecord
        pisteet[style] = g[style].map(&:score).sum.to_f/g[style].count
 
     end
-    pisteet.sort_by { |_key, value| value }.reverse!.first[0]
+    pisteet.sort_by { |_key, value| value }.reverse!.first[0].name
   end
 
   def favorite_brewery
