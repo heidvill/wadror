@@ -1,5 +1,7 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show]
+  require 'beermapping_api'
+  require 'weather_api'
 
   def index
   end
@@ -11,12 +13,13 @@ class PlacesController < ApplicationController
     @places = BeermappingApi.places_in(params[:city])
     @weather = WeatherApi.weather_in(params[:city])
     session[:last_city] = params[:city]
-
+=begin
     if @places.empty?
       redirect_to places_path, notice: "No locations in #{params[:city]}"
     else
+=end
       render :index
-    end
+   # end
   end
 
   private

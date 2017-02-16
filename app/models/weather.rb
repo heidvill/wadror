@@ -7,6 +7,10 @@ class Weather < OpenStruct
     wind_kph.to_f/3.6
   end
 
+  def temp
+    temp_c.to_f
+  end
+
   def icon
     condition["icon"]
   end
