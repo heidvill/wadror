@@ -10,7 +10,7 @@
 <% if @weather %>
     <img src="<%= @weather.icon %>"><br>
     <%= @weather.temp_c %> Celcius <br>
-    <strong>wind:</strong> <%= @weather.wind_kph %>
+    <strong>wind:</strong> <%= @weather.wind %> m/s
 <% end %>
 
 <% if @places %>
