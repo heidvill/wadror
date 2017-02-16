@@ -1,6 +1,6 @@
 class Weather < OpenStruct
   def self.rendered_fields
-    [:temp_c, :condition, :wind_kph]
+    [:temp_c, :condition, :wind_kph, :wind_dir]
   end
 
   def wind

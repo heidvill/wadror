@@ -6,7 +6,7 @@ describe "Places" do
         [Place.new(name: "Oljenkorsi", id: 1)]
     )
     allow(WeatherApi).to receive(:weather_in).with("kumpula").and_return(
-        Weather.new(temp_c:1, condition:{"icon"=>"//cdn.apixu.com/weather/64x64/day/116.png"}, wind_kph: 2)
+        Weather.new(temp_c:1, condition:{"icon"=>"//cdn.apixu.com/weather/64x64/day/116.png"}, wind_kph: 2, wind_dir: "S")
     )
 
     visit places_path
@@ -23,7 +23,7 @@ describe "Places" do
          Place.new(name: "Kuppila2", id: 2)]
     )
     allow(WeatherApi).to receive(:weather_in).with("arabia").and_return(
-        Weather.new(temp_c:1, condition:{"icon"=>"//cdn.apixu.com/weather/64x64/day/116.png"}, wind_kph: 2)
+        Weather.new(temp_c:1, condition:{"icon"=>"//cdn.apixu.com/weather/64x64/day/116.png"}, wind_kph: 2, wind_dir: "S")
     )
 
     visit places_path
@@ -38,7 +38,7 @@ describe "Places" do
   it "if not found, no place is shown at the page" do
     allow(BeermappingApi).to receive(:places_in).with("vallila").and_return([])
     allow(WeatherApi).to receive(:weather_in).with("vallila").and_return(
-        Weather.new(temp_c:1, condition:{"icon"=>"//cdn.apixu.com/weather/64x64/day/116.png"}, wind_kph: 2)
+        Weather.new(temp_c:1, condition:{"icon"=>"//cdn.apixu.com/weather/64x64/day/116.png"}, wind_kph: 2, wind_dir: "S")
     )
 
     visit places_path
