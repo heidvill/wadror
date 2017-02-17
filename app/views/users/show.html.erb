@@ -24,22 +24,24 @@
 </ul>
 
 <% if not @user.ratings.empty? %>
-    Your favourite beer is <%=@user.favorite_beer%>. <br>
-    Your favourite style is <%=@user.favorite_style%>. <br>
-    Your favourite brewery is <%=@user.favorite_brewery%>.
+    Your favourite beer is <%= @user.favorite_beer %>. <br>
+    Your favourite style is <%= @user.favorite_style %>. <br>
+    Your favourite brewery is <%= @user.favorite_brewery %>.
 <% end %>
+
 <h3>Memberships of beer clubs</h3>
+
 <% if @user.beer_clubs.empty? %>
     You are not a member of any beer club
+<% else %>
+    <ul>
+      <% @user.beer_clubs.each do |b| %>
+          <li>
+            <%= link_to b.name, b %>
+          </li>
+      <% end %>
+    </ul>
 <% end %>
-<ul>
-  <% @user.beer_clubs.each do |b| %>
-      <li>
-        <%= link_to b.name, b %>
-      </li>
-  <% end %>
-</ul>
-
 <% if @user == current_user %>
     <%= link_to 'Edit', edit_user_path(@user) %> |
     <%= link_to 'Delete', @user, method: :delete, data: {confirm: 'Are you sure?'} %> |
