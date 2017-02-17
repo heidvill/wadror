@@ -2,24 +2,28 @@
 
 <h1>Users</h1>
 
-<table>
-  <thead>
-  <tr>
-    <th>Username</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @users.each do |user| %>
+<% if @users %>
+    <table>
+      <thead>
       <tr>
-        <td><%= user.username %></td>
-        <td><%= link_to 'Show', user %></td>
+        <th>Username</th>
+        <th colspan="3"></th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
 
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= link_to 'Show', user %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+<% if not @users %>
+  There is not any users in the system.
+<% end %>
 <br>
 
 <%= link_to 'New User', new_user_path %>
