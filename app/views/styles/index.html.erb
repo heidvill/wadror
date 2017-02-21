@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Styles</h1>
 
 <% @styles.each do |style| %>
     <h3><%= link_to style.name, style %></h3>
     <p>
       <%= style.description %>
-      <br>
-      <%= link_to 'Delete', style, method: :delete, data: {confirm: 'Are you sure?'} %>
     </p>
 <% end %>
 
-<%= link_to 'New Style', new_style_path %>
+<%= link_to 'New Style', new_style_path, class:'btn btn-primary' %>

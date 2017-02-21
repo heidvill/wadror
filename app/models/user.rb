@@ -53,4 +53,9 @@ class User < ApplicationRecord
     pisteet.sort_by { |_key, value| value }.reverse!.first[0].name
   end
 
+  def self.top(n)
+    sorted_by_rating_amount_in_desc_order = User.all.sort_by{ |b| -(b.ratings.count) }
+    sorted_by_rating_amount_in_desc_order[0..(n-1)]
+  end
+
 end

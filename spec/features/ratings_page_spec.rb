@@ -30,10 +30,11 @@ end
 describe "Rating page" do
   let!(:user) { FactoryGirl.create :user }
   let!(:user2) { FactoryGirl.create :user2 }
+
   it "should not have any before been created" do
     visit ratings_path
 
-    expect(page).to have_content 'List of ratings'
+    expect(page).to have_content 'Rating statistics'
     expect(page).to have_content 'Number of ratings: 0'
   end
 
