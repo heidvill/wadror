@@ -51,8 +51,9 @@
     <% else %>
         <%= link_to "suspend account", toggle_suspension_user_path(@user.id), method: :post, class: "btn btn-primary" %>
     <% end %>
-    <br><br>
 <% end %>
+
+<br><br>
 
 <% if @user == current_user %>
     <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %> |

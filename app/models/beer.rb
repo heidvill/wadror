@@ -10,7 +10,7 @@ class Beer < ApplicationRecord
   validates :name, length: {minimum: 1}
 
   def to_s
-    "#{name}, #{brewery.name}"
+    name
   end
 
 end
