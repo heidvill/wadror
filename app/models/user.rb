@@ -33,24 +33,21 @@ class User < ApplicationRecord
   end
 
   def favorite_style
-    return nil if ratings.empty?
-    g = ratings.group_by { |r| r.beer.style }
-    pisteet = Hash.new
-    g.keys.each do |style|
-       pisteet[style] = g[style].map(&:score).sum.to_f/g[style].count
-
-    end
-    pisteet.sort_by { |_key, value| value }.reverse!.first[0].name
+    favorite :style
   end
 
   def favorite_brewery
+    favorite :brewery
+  end
+
+  def favorite(category)
     return nil if ratings.empty?
-    g = ratings.group_by { |r| r.beer.brewery }
-    pisteet = Hash.new
-    g.keys.each do |b|
-      pisteet[b] = g[b].map(&:score).sum.to_f/g[b].count
+    grouped_by_category = ratings.group_by { |r| r.beer.send(category) }
+    points = {}
+    grouped_by_category.keys.each do |key|
+      points[key] = grouped_by_category[key].map(&:score).sum.to_f/grouped_by_category[key].count
     end
-    pisteet.sort_by { |_key, value| value }.reverse!.first[0].name
+    points.sort_by { |_key, value| value }.reverse!.first[0].name
   end
 
   def self.top(n)

@@ -1,4 +1,8 @@
-<h2> <%= @user.username %></h2>
+<h2> <%= @user.username %>
+  <% if @user.suspended %>
+      <span class="label label-info">account frozen</span>
+  <% end %>
+</h2>
 
 <p>
   <% if @user.ratings.empty? %>
@@ -40,8 +44,18 @@
       <% end %>
     </ul>
 <% end %>
+
+<% if current_user and current_user.admin? %>
+    <% if @user.suspended %>
+        <%= link_to "reactive account", toggle_suspension_user_path(@user.id), method: :post, class: "btn btn-primary" %>
+    <% else %>
+        <%= link_to "suspend account", toggle_suspension_user_path(@user.id), method: :post, class: "btn btn-primary" %>
+    <% end %>
+    <br><br>
+<% end %>
+
 <% if @user == current_user %>
-    <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-primary" %> |
-    <%= link_to 'Delete', @user, method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %> |
+    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary" %> |
+    <%= link_to 'Delete', @user, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %> |
 <% end %>
 <%= link_to 'Back', users_path %>

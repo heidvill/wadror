@@ -1,5 +1,6 @@
 class Beer < ApplicationRecord
   include RatingAverage
+  include TopN
 
   belongs_to :brewery, optional: true # <-- tällä saadaan virheilmoitusharjoitus vk2 ja testit vk4
   has_many :ratings, dependent: :destroy
@@ -10,11 +11,6 @@ class Beer < ApplicationRecord
 
   def to_s
     "#{name}, #{brewery.name}"
-  end
-
-  def self.top(n)
-    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating) }
-    sorted_by_rating_in_desc_order[0..(n-1)]
   end
 
 end

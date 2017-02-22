@@ -9,16 +9,13 @@
   <%= @brewery.year %>
 </p>
 
-<p>
-  <strong>Beers:</strong>
-  <%= @brewery.beers.count %>
-</p>
+<p>Number of beers <%= @brewery.beers.count%> </p>
 
-<p>
+<ul>
   <% @brewery.beers.each do |beer| %>
-      <%= link_to beer.name, beer %>
+      <li><%= link_to beer.name, beer %></li>
   <% end %>
-</p>
+</ul>
 
 <p>
   <% if @brewery.ratings.empty? %>
