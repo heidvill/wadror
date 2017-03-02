@@ -70,6 +70,14 @@ class BeerClubsController < ApplicationController
     end
   end
 
+  def toggle_confirmation
+
+    membership = Membership.find(params[:id])
+    membership.update_attribute :confirmed, (true)
+
+    redirect_to :back, notice:"user accepted to beer club"
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_beer_club

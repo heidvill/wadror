@@ -17,13 +17,15 @@
     </p>
 <% end %>
 
-<% if not @beer_club.members.empty? %>
-    <h3>Members:</h3>
+<h3>Members:</h3>
+<% if not @beer_club.memberships.confirmed.empty? %>
     <ul>
-      <% @beer_club.members.each do |member| %>
-          <li> <%= link_to member.username, member %></li>
+      <% @beer_club.memberships.confirmed.each do |member| %>
+          <li> <%= link_to member.user.username, member %></li>
       <% end %>
     </ul>
+<% else %>
+    No confirmed members.
 <% end %>
 
 <% if current_user and not current_user.in? @beer_club.members %>
@@ -35,15 +37,25 @@
     <% end %>
 <% end %>
 
-<% if current_user and current_user.in? @beer_club.members %>
-
-    <h3>Outstanding applications</h3>
+<h3>Outstanding applications</h3>
+<% if not @beer_club.memberships.unconfirmed.empty? %>
     <ul>
       <% @beer_club.memberships.unconfirmed.each do |unconfirmed| %>
-        <li> <%= unconfirmed.user %></li>
+          <li>
+            <%= unconfirmed.user.username %>
+
+            <% if current_user and current_user.is_confirmed_member?(@beer_club) %>
+                <%= link_to "confirm", toggle_confirmation_beer_club_path(unconfirmed.id), method: :post, class: "btn btn-primary" %>
+            <% end %>
+          </li>
       <% end %>
     </ul>
+<% else %>
+    No applications waiting.
+<% end %>
 
+
+<% if current_user and current_user.in? @beer_club.memberships.confirmed %>
     <%= form_for(@membership_ending, method: "delete") do |f| %>
         <%= f.hidden_field :beer_club_id %>
         <%= f.submit class: "btn btn-danger", value: "end the membership" %>

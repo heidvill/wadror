@@ -31,13 +31,27 @@
     Your favourite brewery is <%= @user.favorite_brewery %>.
 <% end %>
 
-<h3>Memberships of beer clubs</h3>
+<h3>Beer clubs</h3>
 
-<% if @user.beer_clubs.empty? %>
+<% if @user.memberships.confirmed.empty? %>
     You are not a member of any beer club
 <% else %>
+    <h4>member of</h4>
     <ul>
-      <% @user.beer_clubs.each do |b| %>
+      <% @user.memberships.confirmed.each do |b| %>
+          <li>
+            <%= link_to b.name, b %>
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<% if @user.memberships.unconfirmed.empty? %>
+    You do not have any unconfirmed memberships.
+<% else %>
+    <h4>applied membership of</h4>
+    <ul>
+      <% @user.memberships.unconfirmed.each do |b| %>
           <li>
             <%= link_to b.name, b %>
           </li>

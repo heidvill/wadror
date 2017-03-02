@@ -55,4 +55,9 @@ class User < ApplicationRecord
     sorted_by_rating_amount_in_desc_order[0..(n-1)]
   end
 
+  def is_confirmed_member?(beer_club)
+
+    beer_club.memberships.find_by confirmed:true, user_id:id
+  end
+
 end
