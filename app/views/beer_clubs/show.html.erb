@@ -31,14 +31,22 @@
 
     <%= form_for(@membership) do |f| %>
         <%= f.hidden_field :beer_club_id %>
-        <%= f.submit value: "join the club" , class:"btn btn-primary"%>
+        <%= f.submit value: "join the club", class: "btn btn-primary" %>
     <% end %>
 <% end %>
 
 <% if current_user and current_user.in? @beer_club.members %>
+
+    <h3>Outstanding applications</h3>
+    <ul>
+      <% @beer_club.memberships.unconfirmed.each do |unconfirmed| %>
+        <li> <%= unconfirmed.user %></li>
+      <% end %>
+    </ul>
+
     <%= form_for(@membership_ending, method: "delete") do |f| %>
         <%= f.hidden_field :beer_club_id %>
-        <%= f.submit class:"btn btn-danger", value:"end the membership"  %>
+        <%= f.submit class: "btn btn-danger", value: "end the membership" %>
     <% end %>
 <% end %>
 

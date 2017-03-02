@@ -46,15 +46,16 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem 'webmock' # BeermappingApia varten
+  gem 'selenium-webdriver', '2.53.4'
+  gem 'database_cleaner'
 end
 
 # Use PostgreSQL as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
-  gem "better_errors"     # | Nämän voi halutessaan poistaa. Aja bundle install
+  gem "better_errors"     # | Nämän voi halutessaan poistaa
   gem "binding_of_caller" # |
   gem 'rspec-rails', '~> 3.5'
 end
