@@ -38,9 +38,9 @@
 <% else %>
     <h4>member of</h4>
     <ul>
-      <% @user.memberships.confirmed.each do |b| %>
+      <% @user.memberships.confirmed.each do |m| %>
           <li>
-            <%= link_to b.name, b %>
+            <%= link_to m.beer_club, m.beer_club %>
           </li>
       <% end %>
     </ul>
@@ -51,9 +51,10 @@
 <% else %>
     <h4>applied membership of</h4>
     <ul>
-      <% @user.memberships.unconfirmed.each do |b| %>
+      <% @user.memberships.unconfirmed.each do |m| %>
           <li>
-            <%= link_to b.name, b %>
+
+            <%= link_to m.beer_club, m.beer_club %>
           </li>
       <% end %>
     </ul>
