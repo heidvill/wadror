@@ -42,7 +42,7 @@
       <% end %>
     </ul>
 <% else %>
-    No applications waiting.
+    <p>No applications waiting.</p>
 <% end %>
 
 <% if current_user and not current_user.in? @beer_club.members %>
@@ -52,6 +52,7 @@
         <%= f.hidden_field :beer_club_id %>
         <%= f.submit value: "join the club", class: "btn btn-primary" %>
     <% end %>
+
 <% end %>
 
 <% if current_user and current_user.is_confirmed_member? @beer_club %>
