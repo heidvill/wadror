@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9479b06e-a18e-4ee6-b4d2-972c67872b62" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/beer_clubs/index.html.erb" afterPath="$PROJECT_DIR$/app/views/beer_clubs/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/beer_clubs/show.html.erb" afterPath="$PROJECT_DIR$/app/views/beer_clubs/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show.html.erb" />
-    </list>
+    <list default="true" id="9479b06e-a18e-4ee6-b4d2-972c67872b62" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -510,16 +506,16 @@
       <workItem from="1488448827521" duration="7450000" />
       <workItem from="1488462706018" duration="6390000" />
       <workItem from="1488529693302" duration="6790000" />
-      <workItem from="1488703574336" duration="7123000" />
+      <workItem from="1488703574336" duration="7706000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256596000" />
+    <option name="totallyTimeSpent" value="257179000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="621" y="0" width="983" height="860" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18924509" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
