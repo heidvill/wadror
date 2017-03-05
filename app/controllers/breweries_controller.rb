@@ -2,6 +2,13 @@ class BreweriesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_user_is_admin, only: [:destroy]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
+  before_action :skip_if_cached, only:[:index]
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if request.format.html? and fragment_exist?( "brewerylist-#{@order}")
+  end
+
 
   # GET /breweries
   # GET /breweries.json
@@ -11,12 +18,10 @@ class BreweriesController < ApplicationController
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
 
-    order = params[:order] || 'name'
-
-    if order == 'name'
+    if @order == 'name'
       @active_breweries =  @active_breweries.sort_by{ |b| b.name }
       @retired_breweries = @retired_breweries.sort_by{ |b| b.name}
-    elsif order == 'year' and session[:order] == 'asc'
+    elsif @order == 'year' and session[:order] == 'asc'
       @active_breweries = @active_breweries.sort_by{ |b| b.year }
       @retired_breweries = @retired_breweries.sort_by{ |b| b.year}
       session[:order] = "desc"
@@ -48,6 +53,9 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
+    expire_fragment('brewerylist')
+    ["brewerylist-name", "brewerylist-year"].each{ |f| expire_fragment(f) }
+
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
@@ -64,6 +72,8 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
+    expire_fragment('brewerylist')
+
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -78,6 +88,8 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
+    expire_fragment('brewerylist')
+
     @brewery.destroy
     respond_to do |format|
       format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }

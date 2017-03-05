@@ -1,6 +1,12 @@
 class RatingsController < ApplicationController
+  before_action :skip_if_cached, only:[:index]
+
+  def skip_if_cached
+    return render :index if fragment_exist? ("rating_statistics")
+  end
 
   def index
+    # Etusivun avaamisen tehostamiseksi cache tyhjennetään 10 min välein
     @ratings = Rating.all
     @top_breweries = Brewery.top 3
     @top_beers = Beer.top 3
@@ -18,7 +24,6 @@ class RatingsController < ApplicationController
     @rating.user = current_user
 
     if @rating.save
-      # current_user.ratings << @rating
       redirect_to user_path(current_user)
     else
       @beers = Beer.all

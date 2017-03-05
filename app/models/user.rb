@@ -56,7 +56,6 @@ class User < ApplicationRecord
   end
 
   def is_confirmed_member?(beer_club)
-
     beer_club.memberships.find_by confirmed:true, user_id:id
   end
 

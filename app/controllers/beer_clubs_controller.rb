@@ -71,9 +71,8 @@ class BeerClubsController < ApplicationController
   end
 
   def toggle_confirmation
-
     membership = Membership.find(params[:id])
-    membership.update_attribute :confirmed, (true)
+    membership.update_attribute :confirmed, true
 
     redirect_to :back, notice:"user accepted to beer club"
   end

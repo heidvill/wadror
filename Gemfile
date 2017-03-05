@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rspec-its'
 gem 'httparty'
 gem 'bootstrap-sass'
+gem 'rack-mini-profiler'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

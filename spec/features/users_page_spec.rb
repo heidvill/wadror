@@ -69,24 +69,24 @@ describe "User page" do
 
   it "does not show favourite style if no ratings created" do
     visit user_path(user)
-    expect(page).not_to have_content 'Your favourite style'
+    expect(page).not_to have_content 'Favorite style'
   end
 
   it "shows favourite style correctly"do
     create_two_ratings_and_sign_in
 
-    expect(page).to have_content 'Your favourite style is Lager'
+    expect(page).to have_content 'Favorite style: Lager'
   end
 
   it "does not show favourite brewery if no ratings created" do
     visit user_path(user)
-    expect(page).not_to have_content 'Your favourite brewery'
+    expect(page).not_to have_content 'Favorite brewery'
   end
 
   it "shows favourite brewery correctly"do
     create_two_ratings_and_sign_in
 
-    expect(page).to have_content 'Your favourite brewery is anonymous'
+    expect(page).to have_content 'Favorite brewery: anonymous'
   end
 
   def create_two_ratings_and_sign_in

@@ -1,5 +1,5 @@
 class Rating < ApplicationRecord
-  belongs_to :beer, optional: true
+  belongs_to :beer, optional: true, touch:true
   belongs_to :user, optional: true
 
   validates :score, numericality: {greater_than_or_equal_to: 1,

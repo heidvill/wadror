@@ -26,9 +26,13 @@
 </ul>
 
 <% if not @user.ratings.empty? %>
-    Your favourite beer is <%= @user.favorite_beer %>. <br>
-    Your favourite style is <%= @user.favorite_style %>. <br>
-    Your favourite brewery is <%= @user.favorite_brewery %>.
+    <div class="panel panel-default">
+      <div class="panel-body">
+        Favorite beer: <%= @user.favorite_beer %>. <br>
+        Favorite style: <%= @user.favorite_style %>. <br>
+        Favorite brewery: <%= @user.favorite_brewery %>.
+      </div>
+    </div>
 <% end %>
 
 <h3>Beer clubs</h3>
@@ -59,6 +63,8 @@
       <% end %>
     </ul>
 <% end %>
+
+<br><br>
 
 <% if current_user and current_user.admin? %>
     <% if @user.suspended %>
